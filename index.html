@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Users Form</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){ 
+				$('form').submit(function(event){
+					event.preventDefault();
+					$('#output').append("<div class='card'><div class='info'><h1>"+$('#first_name').val()+'&nbsp;'+$('#last_name').val()+"</h1>"+"<p>Click for description</p></div>"+"<div class='text' style='display: none;'><p>"+$('#description').val()+"</p></div></div>"); 
+					 document.getElementById('myForm').reset(); 
+				}); 
+				$(document).on('click', '.card', function(){
+					var Contact = $(this).children('.info');
+					var description = $(this).children('.text');
+					if(Contact.is(':hidden')){
+						description.hide(); 
+						Contact.show(); 
+					}
+					else {
+						Contact.hide(); 
+						description.show(); 
+					}
+				}); 
+			}); 
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Add User</h1>
+			<div class="form">
+				<form id="myForm">
+					<label for="first_name">First Name:</label>
+    				<input type="text" id="first_name" name="first_name">
+    				<label for="first_name">Last Name:</label>
+    				<input type="text" id="last_name" name="last_name">
+    				<p>Description</p>
+    				<textarea id="description"></textarea>
+    				<input id="Submit" type="Submit" name="Submit">
+				</form>
+			</div>
+			<div id="output">
+			</div>
+		</div>
+	</body>
+</html>
